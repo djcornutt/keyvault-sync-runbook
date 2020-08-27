@@ -145,7 +145,7 @@
                 "enabledForTemplateDeployment": false,
                 "enableSoftDelete": true
             }
-        },
+        }
 
     ]
 }
