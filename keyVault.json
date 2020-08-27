@@ -1,0 +1,151 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "certificates_AzureRunAsCertificate_base64Value": {
+            "type": "SecureString"
+        },
+        "vault_name": {
+            "type": "String"
+        },
+        "region": {
+            "type": "string",
+            "defaultValue": "usgovvirginia"
+        },
+        "resource_group_name": {
+            "type": "string",
+            "metadata": {
+                "description": "description"
+            },
+            "defaultValue": ""
+        }
+    },
+    "variables": {},
+    "resources": [
+        {
+            "type": "Microsoft.KeyVault/vaults",
+            "apiVersion": "2016-10-01",
+            "name": "[parameters('vault_name')]",
+            "location": "[parameters('region')]",
+            "properties": {
+                "sku": {
+                    "family": "A",
+                    "name": "standard"
+                },
+                "tenantId": "8a09f2d7-8415-4296-92b2-80bb4666c5fc",
+                "accessPolicies": [
+                    {
+                        "tenantId": "8a09f2d7-8415-4296-92b2-80bb4666c5fc",
+                        "objectId": "01d95eb3-9a09-473a-a371-6194ebac4887",
+                        "permissions": {
+                            "keys": [
+                                "Get",
+                                "List",
+                                "Update",
+                                "Create",
+                                "Import",
+                                "Delete",
+                                "Recover",
+                                "Backup",
+                                "Restore",
+                                "Decrypt",
+                                "Encrypt",
+                                "UnwrapKey",
+                                "WrapKey",
+                                "Verify",
+                                "Sign",
+                                "Purge"
+                            ],
+                            "secrets": [
+                                "Get",
+                                "List",
+                                "Set",
+                                "Delete",
+                                "Recover",
+                                "Backup",
+                                "Restore",
+                                "Purge"
+                            ],
+                            "certificates": [
+                                "Get",
+                                "List",
+                                "Update",
+                                "Create",
+                                "Import",
+                                "Delete",
+                                "Recover",
+                                "Backup",
+                                "Restore",
+                                "ManageContacts",
+                                "ManageIssuers",
+                                "GetIssuers",
+                                "ListIssuers",
+                                "SetIssuers",
+                                "DeleteIssuers",
+                                "Purge"
+                            ]
+                        }
+                    },
+                    {
+                        "tenantId": "8a09f2d7-8415-4296-92b2-80bb4666c5fc",
+                        "objectId": "e5825afe-d405-41fc-8841-68d6970ea317",
+                        "permissions": {
+                            "keys": [
+                                "Get",
+                                "Create",
+                                "Delete",
+                                "List",
+                                "Update",
+                                "Import",
+                                "Backup",
+                                "Restore",
+                                "Recover"
+                            ],
+                            "secrets": [
+                                "Get",
+                                "List",
+                                "Set",
+                                "Delete",
+                                "Backup",
+                                "Restore",
+                                "Recover"
+                            ],
+                            "certificates": [
+                                "Get",
+                                "List",
+                                "Delete",
+                                "Create",
+                                "Import",
+                                "Update",
+                                "ManageContacts",
+                                "GetIssuers",
+                                "ListIssuers",
+                                "SetIssuers",
+                                "DeleteIssuers",
+                                "ManageIssuers",
+                                "Recover"
+                            ],
+                            "storage": [
+                                "get",
+                                "list",
+                                "delete",
+                                "set",
+                                "update",
+                                "regeneratekey",
+                                "setsas",
+                                "listsas",
+                                "getsas",
+                                "deletesas"
+                            ]
+                        }
+                    }
+                ],
+                "enabledForDeployment": false,
+                "enabledForDiskEncryption": false,
+                "enabledForTemplateDeployment": false,
+                "enableSoftDelete": true
+            }
+        },
+
+    ]
+}
